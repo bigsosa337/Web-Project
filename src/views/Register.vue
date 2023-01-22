@@ -1,33 +1,33 @@
 <template>
- <div>
-  <h1>Register</h1>
-  <form @submit.prevent="register()">
-    <div>
-      <label for="inputMailLabel" class="registerLabel">Type in your mail</label>
-      <div class="inputMailText">
-        <input 
-          v-model="email"
-          type="text"
-          class="mailInput"
-          id="mailInputRegister"
-        />
+ <div id="mainDiv">
+    <h1>Register</h1>
+    <form @submit.prevent="register()">
+      <div>
+        <label for="inputMailLabel" class="registerLabel">Type in your mail</label>
+        <div class="inputMailText">
+          <input 
+            v-model="email"
+            type="text"
+            class="mailInput"
+            id="mailInputRegister"
+          />
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="inputPassLabel" class="registerLabel">Type in your password</label>
-      <div class="inputPassText">
-        <input 
-          v-model="password"
-          type="password"
-          class="mailInput"
-          id="passInputRegister"
-        />
+      <div>
+        <label for="inputPassLabel" class="registerLabel">Type in your password</label>
+        <div class="inputPassText">
+          <input 
+            v-model="password"
+            type="password"
+            class="mailInput"
+            id="passInputRegister"
+          />
+        </div>
       </div>
-    </div>
-    <div>
-      <button type="submit" class="submitBtn">Register</button>
-    </div>
-  </form>
+      <div>
+        <w-button type="submit" class="submitBtn">Register</w-button>
+      </div>
+    </form>
  </div>
 </template>
 
@@ -69,18 +69,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+#mainDiv{
+  margin-top: 30px;
 }
 </style>

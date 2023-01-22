@@ -1,10 +1,12 @@
 <template>
   <w-app block>  
-    <nav>
-      <router-link to="/register" class="navBar">Register</router-link>
-      <router-link to="/logIn" class="navBar">Log In</router-link>
-      <router-link to="/home" class="navBar">Home</router-link>
-      <router-view />
+    <nav class="mainNavBar">
+      <div>
+        <router-link to="/register" class="navBar">Register</router-link>
+        <router-link to="/logIn" class="navBar">Log In</router-link>
+        <router-link to="/home" class="navBar">Home</router-link>
+        <router-view />
+      </div>
     </nav>
   </w-app>
 </template>
@@ -14,16 +16,22 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Product Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
+  margin-left: 15px;
 }
 
 .navBar {
-  margin: 15px;
+  margin-right: 20px;
   text-decoration: none;
+  font-weight: 600;
+}
+
+.mainNavBar {
+  /* text-align: left; */
 }
 </style>
