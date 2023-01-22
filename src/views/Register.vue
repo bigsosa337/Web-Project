@@ -1,33 +1,39 @@
 <template>
  <div id="mainDiv">
     <h1>Register</h1>
-    <form @submit.prevent="register()">
+    <w-form @submit.prevent="register()" class="regForm" id="regisForm">
       <div>
-        <label for="inputMailLabel" class="registerLabel">Type in your mail</label>
         <div class="inputMailText">
-          <input 
+          <w-input 
+            label="Type in your email"
             v-model="email"
             type="text"
-            class="mailInput"
+            class="mb4"
             id="mailInputRegister"
+            :validators="[validators.required]"
+            title
+            outline
           />
         </div>
       </div>
       <div>
-        <label for="inputPassLabel" class="registerLabel">Type in your password</label>
         <div class="inputPassText">
-          <input 
+          <w-input 
+            label="Give it a strong password"
             v-model="password"
             type="password"
-            class="mailInput"
+            class="mb4"
             id="passInputRegister"
+            :validators="[validators.required]"
+            tile
+            outline
           />
         </div>
       </div>
       <div>
-        <w-button type="submit" class="submitBtn">Register</w-button>
+      <w-button type="submit" class="ma1" id="submitBtn" >Register</w-button>
       </div>
-    </form>
+    </w-form>
  </div>
 </template>
 
@@ -44,6 +50,10 @@ export default {
       email: "",
       password: "",
       mesaj: "",
+      valid: null,
+      validators: {
+      required: value => !!value || 'This field is required'
+     }
     }
   },
   methods: {
@@ -72,4 +82,17 @@ export default {
 #mainDiv{
   margin-top: 30px;
 }
+
+.mb4 {
+  width:300px;
+  /* height:40px; */
+}
+
+#regisForm {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 </style>

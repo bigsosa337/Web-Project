@@ -1,33 +1,106 @@
 <template>
  <div class="bigDiv">
-  <h1></h1>
+  <h1>Log In</h1>
+  <w-form @submit.prevent="login()" class="logForm" id="logiForm">
+      <div>
+        <div class="inputMailText">
+          <w-input 
+            label="Type in your email"
+            v-model="email"
+            type="text"
+            class="mb4"
+            id="mailInputRegister"
+            :validators="[validators.required]"
+            title
+            outline
+          />
+        </div>
+      </div>
+      <div>
+        <div class="inputPassText">
+          <w-input 
+            label="Give it a strong password"
+            v-model="password"
+            type="password"
+            class="mb4"
+            id="passInputRegister"
+            :validators="[validators.required]"
+            tile
+            outline
+          />
+        </div>
+      </div>
+      <div>
+      <w-button type="submit" class="ma1" id="submitBtn" >Log In</w-button>
+      </div>
+      <div class="mesaj" id="msj">
+        {{ mesaj }}
+      </div>
+    </w-form>
 
  </div>
 </template>
 
 <script>
+import utils from "../utils"
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'LogIn',
+  data() {
+    return {
+      email: "",
+      password: "",
+      mesaj: "",
+      valid: null,
+      validators: {
+      required: value => !!value || 'This field is required'
+     }
+    };
+  },
+  methods: {
+    login() {
+      console.log(`You are trying to Log In with:${this.email}`);
+      //log utils
+      let data = {
+        email: this.email,
+        password: this.password,
+      };
+
+      let requestParameters = utils.globalRequestParameters;
+      requestParameters.method = "POST";
+      requestParameters.body = JSON.stringify(data);
+
+      fetch(utils.url + "login", requestParameters).then((res) => {
+        res.json().then((res) => {
+          this.mesaj = res.message;
+          if (res.token) {
+            localStorage.setItem("token", res.token);
+            this.$store.dispatch("login", true)
+          }
+          //After log in redirect user to home page
+          // this.$router.push("/")
+        })
+      })
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.bigDiv{
+  margin-top: 30px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.mb4 {
+  width:300px;
+  /* height:40px; */
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+#regisForm {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-a {
-  color: #42b983;
-}
+
 </style>

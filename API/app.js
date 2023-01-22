@@ -12,7 +12,7 @@
 //   }
 // ]
 
-let users = []
+
 
 // require(['foo'], function (foo) {
 //   //foo is now loaded.
@@ -106,30 +106,45 @@ app.post('/user', async (req, res) => {
   }
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
+  // console.log('vrei sa te autentifici cu ', ${dataemailAddress})
   let data = req.body
-  console.log('vrei sa te autentifici cu ', loginData)
+  let existingUser = false
 
-  let response = {}
-  response.success = false
-
-  const user = (users.find((user) => user.emailAddress === loginData.emailAddress))
-
-  if ( user === undefined) {
+   
+  const userDb = db.collection("users")
+  const user = await userDb.where("email", "==", data.email).get()
+  
+  if ( user.empty) {
+      let response = {}
       response.user = false
+      response.message = "No user found"
+      res.json(response)
       console.log('utilizatorul nu exista')
   } else {
-      bcrypt.compare(loginData.password, user.password, function(err, result) {
+      existingUser = true
+      user.forEach((doc) => {
+      bcrypt.compare(data.password, doc.password, function(err, result) {
           if (result) {
 
-              let token = jwt.sign({
+              let token = jwt.sign(
+                { 
                   data: user.emailAddress
-                }, serverSecret, { expiresIn: '1h' })
+                },
+                  serverSecret,
+                    { expiresIn: '1h' }
+                );
 
               console.log('tokenul tau este: ', token)
               res.send({token})
-          }
-              else console.log('parola este gresita') //de completat
+              response.message = "You have access to edit resources for 1 hour"
+          } else {
+            let response = {}
+            response.message = "Wrong password or email"
+            res.json(response)
+            console.log('Wrong password or email address')
+          } 
+        })
       });
   }
 
