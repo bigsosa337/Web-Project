@@ -89,7 +89,7 @@ app.post('/user', async (req, res) => {
   }
 
   if (emailExist) {
-    console.log()
+    console.log("Email already linked to an account!")
     res.send("Email already linked to an account!")
   } else {
     bcrypt.genSalt(saltRounds, function(err, salt) {
@@ -107,7 +107,7 @@ app.post('/user', async (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  let loginData = req.body
+  let data = req.body
   console.log('vrei sa te autentifici cu ', loginData)
 
   let response = {}

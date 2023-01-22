@@ -1,5 +1,8 @@
 <template>
- <div></div>
+ <div class="bigDiv">
+  <h1></h1>
+
+ </div>
 </template>
 
 <script>

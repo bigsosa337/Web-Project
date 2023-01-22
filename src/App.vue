@@ -1,11 +1,12 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <nav>
-    <router-link to="/register" class="navBar">Register</router-link>
-    <router-link to="/logIn" class="navBar">Log In</router-link>
-    <router-link to="/home" class="navBar">Home</router-link>
-    <router-view />
-  </nav>
+  <w-app block>  
+    <nav>
+      <router-link to="/register" class="navBar">Register</router-link>
+      <router-link to="/logIn" class="navBar">Log In</router-link>
+      <router-link to="/home" class="navBar">Home</router-link>
+      <router-view />
+    </nav>
+  </w-app>
 </template>
 
 <script>
