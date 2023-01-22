@@ -1,4 +1,4 @@
-# tic1
+# Web-Project
 
 ## Project setup
 ```
