@@ -31,7 +31,7 @@
         </div>
       </div>
       <div>
-      <w-button type="submit" class="ma1" id="submitBtn" >Register</w-button>
+      <button type="submit" class="ma1" id="submitBtn" >Register</button>
       </div>
     </w-form>
  </div>
@@ -79,6 +79,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+body{
+  background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png);
+}
 #mainDiv{
   margin-top: 30px;
 }
@@ -93,6 +97,30 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
+h1 {
+  margin-bottom: 10px;
+}
 
+#mainDiv {
+  background-color: rgba(248, 248, 248, 0.925);
+  padding:25px;
+  border-radius: 5px;
+}
+
+#submitBtn {
+  height: 25px;
+  width:100px;
+  background-color: rgb(5, 146, 99);
+  color: aliceblue;
+  border: none;
+  border-radius: 3px;
+}
+
+#submitBtn:hover {
+  cursor:pointer;
+  background-color:  rgb(34, 199, 144);
+  border: 1px;
+  color: rgb(255, 255, 255);
+}
 
 </style>

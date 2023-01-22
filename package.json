@@ -11,6 +11,7 @@
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.2",
     "wave-ui": "^2.48.0"
   },
   "devDependencies": {

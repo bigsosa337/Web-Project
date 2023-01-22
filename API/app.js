@@ -111,7 +111,6 @@ app.post("/login", async (req, res) => {
   let data = req.body
   let existingUser = false
 
-   
   const userDb = db.collection("users")
   const user = await userDb.where("email", "==", data.email).get()
   
@@ -124,18 +123,21 @@ app.post("/login", async (req, res) => {
   } else {
       existingUser = true
       user.forEach((doc) => {
-      bcrypt.compare(data.password, doc.password, function(err, result) {
+      bcrypt
+      .compare(data.password, doc.data().password, async function(err, result) {
+        console.log(doc.data().password)
+        console.log(data.password + "========================")
           if (result) {
-
               let token = jwt.sign(
                 { 
-                  data: user.emailAddress
+                  email: doc.data().email,
                 },
                   serverSecret,
                     { expiresIn: '1h' }
                 );
 
               console.log('tokenul tau este: ', token)
+              let response = {}
               res.send({token})
               response.message = "You have access to edit resources for 1 hour"
           } else {
