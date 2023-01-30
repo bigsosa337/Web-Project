@@ -1,22 +1,3 @@
-// fake db
-// let db = [
-//   {
-//       id: 0,
-//       taskName: "do your bed",
-//       status: "notStartedYet"
-//   },
-//   {
-//       id: 190,
-//       taskName: "prepare for exam",
-//       status: "done"
-//   }
-// ]
-
-
-
-// require(['foo'], function (foo) {
-//   //foo is now loaded.
-// });
 const cors = require('cors');
 // const cors = require('cors');
 const express = require('express');
@@ -33,9 +14,33 @@ app.use(express.json()) //we expect JSON data to be sent as payloads
 app.use(cors())
 
 const logger = require('morgan'); //importing a HTTP logger
-
 app.use(logger('dev')); //using the HTTP logger library
 
+//importam componenta de task
+var taskRouter = require("./routes/task");
+// app.use('/', require("./routes/task"));
+app.use("/", taskRouter);
+
+function beforeEnteringRoute(req, res, next) {
+  console.log("I've been here first");
+  next();
+}
+
+function firstCriteria(req, res, next) {
+  if (req.params.variable < 5) {
+    console.log("Too small");
+    res.status(401).send("Too small");
+  } else next();
+}
+
+function secondCriteria(req, res, next) {
+  if (req.params.variable > 20) {
+    console.log("Too large");
+    res.status(401).send("Too large");
+  } else next();
+}
+
+let middlewareArray = [firstCriteria, secondCriteria];
 // middleware
 function verifyToken(req, res, next) {
   let token = req.headers['authorization'] 
@@ -171,3 +176,6 @@ app.post('/tasks', verifyToken,(req, res) => {
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}!`)
 });
+
+module.exports = app;
+module.exports = db;

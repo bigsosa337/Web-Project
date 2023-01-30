@@ -5,6 +5,8 @@
         <router-link to="/register" class="navBar">Register</router-link>
         <router-link to="/logIn" class="navBar">Log In</router-link>
         <router-link to="/home" class="navBar">Home</router-link>
+        <router-link to="/addTask" class="navBar">Add Task</router-link>
+        <button v-if="isAuthenticated" @click="logout()" class="logoutBtn">Log Out</button>
       </div>
     </nav>
     <router-view />
@@ -12,6 +14,21 @@
 </template>
 
 <script>
+export default {
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
+    },
+  },
+  methods: {
+    logout() {
+      console.log("Try logout");
+      this.$store.commit("SET_AUTH", false);
+      window.localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style>
@@ -23,7 +40,7 @@
   color: #2c3e50;
   /* margin-top: 60px; */
   padding-top: 50px;
-  background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png);
+  /* background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png); */
 
 }
 

@@ -11,6 +11,11 @@
         components: {
             ToDo
         },
+        computed: {
+            todos() {
+                return
+            }
+        }
     }
 </script>
 
