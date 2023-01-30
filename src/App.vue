@@ -5,7 +5,7 @@
         <router-link to="/register" class="navBar">Register</router-link>
         <router-link to="/logIn" class="navBar">Log In</router-link>
         <router-link to="/home" class="navBar">Home</router-link>
-        <router-link to="/addTask" class="navBar">Add Task</router-link>
+        <router-link v-if="isAuthenticated" to="/addTask" class="navBar">Add Task</router-link>
         <button v-if="isAuthenticated" @click="logout()" class="logoutBtn">Log Out</button>
       </div>
     </nav>

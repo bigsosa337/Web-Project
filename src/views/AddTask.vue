@@ -48,7 +48,6 @@ export default {
             fetch(utils.url + "tasks", requestParameters)
                 .then((res) => res.json())
                 .then((res) => {
-                    debugger
                     console.log(utils.url)
                     console.log(res.message)
                     if(
