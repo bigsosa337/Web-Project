@@ -76,7 +76,6 @@ router.put("/tasks/:id", checkAuthorization, async (req, res) => {
 });
 
 //Remove Task
-router.delete("/students/:id", checkAuthorization, (req, res) => {
 router.delete("/tasks/:id", checkAuthorization, (req, res) => {
     console.log("Task with id: " + req.params.id + " will be deleted.")
     let id = req.params.id;
