@@ -78,7 +78,7 @@ export default {
             this.$store.dispatch("login", true)
           }
           //After log in redirect user to home page
-          // this.$router.push("/")
+          this.$router.push("/")
         })
       })
     }

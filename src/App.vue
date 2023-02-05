@@ -2,9 +2,9 @@
   <w-app align-center>  
     <nav class="mainNavBar">
       <div id="navBarr">
-        <router-link to="/register" class="navBar">Register</router-link>
-        <router-link to="/logIn" class="navBar">Log In</router-link>
-        <router-link to="/home" class="navBar">Home</router-link>
+        <router-link v-if="!isAuthenticated" to="/register" class="navBar">Register</router-link>
+        <router-link v-if="!isAuthenticated" to="/logIn" class="navBar">Log In</router-link>
+        <router-link to="/" class="navBar">Home</router-link>
         <router-link v-if="isAuthenticated" to="/addTask" class="navBar">Add Task</router-link>
         <button v-if="isAuthenticated" @click="logout()" class="logoutBtn">Log Out</button>
       </div>
@@ -40,7 +40,7 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
   padding-top: 50px;
-  /* background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png); */
+   background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png);
 
 }
 

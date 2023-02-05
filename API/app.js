@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const serverSecret = 'bahoi'
 var db = require("./database")
 
+
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json()) //we expect JSON data to be sent as payloads
 app.use(cors())
@@ -17,9 +18,11 @@ const logger = require('morgan'); //importing a HTTP logger
 app.use(logger('dev')); //using the HTTP logger library
 
 //importam componenta de task
-var taskRouter = require("./routes/task");
-// app.use('/', require("./routes/task"));
-app.use("/", taskRouter);
+var tasksRouter = require("./routes/task");
+app.use("/", tasksRouter);
+
+var noteRouter = require("./routes/note");
+app.use("/", noteRouter);
 
 function beforeEnteringRoute(req, res, next) {
   console.log("I've been here first");
@@ -160,18 +163,18 @@ app.post("/login", async (req, res) => {
 
 })
 
-app.post('/tasks', verifyToken,(req, res) => {
+// app.post('/tasks', verifyToken,(req, res) => {
 
-  if (req.email === 'mihai.gheorghe@gdm.ro') {
-      console.log('vrei sa adaugi taskul cu detaliile ', req.body)
-      res.send('am adaugat')
-  } else {
-      res.status(403)
-      res.send('Incerci sa adaugi o resursa pentru alta adresa de email')
-  }
+//   if (req.email === 'mihai.gheorghe@gdm.ro') {
+//       console.log('vrei sa adaugi taskul cu detaliile ', req.body)
+//       res.send('am adaugat')
+//   } else {
+//       res.status(403)
+//       res.send('Incerci sa adaugi o resursa pentru alta adresa de email')
+//   }
 
 
-})
+// })
 
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}!`)
