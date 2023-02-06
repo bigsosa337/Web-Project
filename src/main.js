@@ -5,8 +5,11 @@ import WaveUI from 'wave-ui'
 import 'wave-ui/dist/wave-ui.css'
 import store from "./store";
 const app = createApp(App)
+//material design 
+
 
 new WaveUI(app, {
+  
 
 });
 app.use(WaveUI, {

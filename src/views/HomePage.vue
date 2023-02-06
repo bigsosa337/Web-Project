@@ -9,14 +9,33 @@
         @click.prevent="() => {
           tasks.sort(sortByName)
         }"
-        >Asc</w-button>
+        >
+        <svg-icon
+          class="mr1"
+          color="primary"
+          type="mdi"
+          :path="mdiSortAlphabeticalAscending"
+          size="20"
+          >
+        </svg-icon>     
+        </w-button>
         <w-button
         class="ma1"
         bg-color="success"
         @click.prevent="() => {
           tasks.sort(sortByName).reverse()
         }"
-        >Desc</w-button>
+        >
+        <svg-icon
+          class="mr1"
+          color="primary"
+          type="mdi"
+          :path="path"
+          size="20"
+          >
+          
+        </svg-icon>  
+        </w-button>
       </div>
       <TaskComponent class="task"
         @remove="deleteTask"
@@ -35,6 +54,8 @@
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiSortAlphabeticalAscending , mdiSortAlphabeticalDescending     } from '@mdi/js';
 import TaskComponent from "../components/Task.vue"
 import utils, { globalRequestParameters, sortByName } from "../utils";
 
@@ -42,9 +63,14 @@ export default {
   name:"HomePage",
   components: {
     TaskComponent,
+    SvgIcon
   },
   data() {
-    return {};
+    return {
+      path: 
+      mdiSortAlphabeticalDescending,      
+      mdiSortAlphabeticalAscending
+    };
   },
   created() {
     let url = utils.url;
@@ -117,7 +143,9 @@ h1{
 .task {
   padding-top: 10px;
 }
-
+.ma1 {
+  padding: 12px;
+}
 .s {
   border: 1px solid black;
 }

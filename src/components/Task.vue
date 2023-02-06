@@ -14,7 +14,14 @@
           class="ma1"
           id="seeNotes"
           bg-color="info"
+        ><svg-icon
+        class="mr1"
+        color="primary"
+        type="mdi"
+        :path="mdiEye"
+        size="20"
         >
+        </svg-icon>
           See Notes
         </w-button>
         <w-button
@@ -23,7 +30,14 @@
           class="ma1"
           id="addNote"
           bg-color="info"
+        ><svg-icon
+        class="mr1"
+        color="primary"
+        type="mdi"
+        :path="mdiPlus"
+        size="20"
         >
+        </svg-icon>
           Add note
         </w-button>
 
@@ -33,8 +47,15 @@
           class="ma1"
           id="edit"
           bg-color="warning"
+        ><svg-icon
+        class="mr1"
+        color="primary"
+        type="mdi"
+        :path="path"
+        size="20"
         >
-          Edit Task
+        </svg-icon>
+        Edit
         </w-button>
 
         <w-button
@@ -43,8 +64,16 @@
           class="ma1"
           id="remove"
           bg-color="error"
+        ><svg-icon
+        class="mr1"
+        color="primary"
+        type="mdi"
+        :path="mdiDelete"
+        size="18"
         >
-          Remove Task
+        mdi mdi-star
+        </svg-icon>
+          Remove
         </w-button>
       </div>
       <div v-if="handleNoteSearch" class="noteContainer">
@@ -53,12 +82,24 @@
           type="text"
           class="mb4"     
           id="addnoteInput"   
+          label="Type note here"
+
         />
         <w-button
           v-if="isAuthenticated"
           @click="addNote"
           class="ma1"
-        >Add</w-button>
+        >
+        <svg-icon
+        class="mr1"
+        color="primary"
+        type="mdi"
+        :path="mdiPlus"
+        size="20"
+        >
+        </svg-icon>
+        Add
+        </w-button>
       </div>
       <div class="noteBtns">
         <div v-if="handleNoteShow && this.notes.length > 0" class="innternotebtn" >
@@ -70,9 +111,16 @@
                 @click="deleteNote(note)"
                 class="ma1"
                 bg-color="error"
-                icon="wi-cross"
               >
-                Delete Note
+              <svg-icon
+                class="mr1"
+                color="primary"
+                type="mdi"
+                :path="mdiDelete"
+                size="20"
+                >
+              </svg-icon>
+                Delete
               </w-button>
           </div>
         </div>
@@ -83,11 +131,16 @@
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiPencil, mdiDelete, mdiPlus, mdiEye, } from '@mdi/js';
 import utils, { globalRequestParameters } from "../utils.js";
 export default {
   name: "TaskComponent",
   props: {
     task: Object,
+  },
+  components: {
+    SvgIcon
   },
   data()  {
     return { 
@@ -95,6 +148,7 @@ export default {
     handleNoteShow: false,
     noteName: "",
     notes: [],
+    path: mdiPencil, mdiDelete, mdiPlus,mdiEye
     }
   },
   beforeMount() {
@@ -195,10 +249,10 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.ma1 {
-}
+
 #addnoteInput {
   width: 50%;
+  padding-top: 5px;
   
 }
 </style>
