@@ -34,6 +34,9 @@
       <button type="submit" class="ma1" id="submitBtn" >Register</button>
       </div>
     </w-form>
+    <div class="mesaj" id="msj">
+        {{ mesaj }}
+      </div>
  </div>
 </template>
 

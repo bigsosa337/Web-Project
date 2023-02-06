@@ -74,12 +74,15 @@ export default {
   },
   created() {
     let url = utils.url;
+
     if (!this.tasks.length) {
       fetch(url + "tasks", globalRequestParameters).then((res) =>
       res.json().then((res) => {
         this.$store.dispatch("fetchTasks", res);
       })
     );
+    console.log(url)
+    console.log(globalRequestParameters)
   }
   },
   computed: {

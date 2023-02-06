@@ -1,8 +1,8 @@
 <template>
  <div class="containerTodo">
     <div v-if="isAuthenticated" class="body">
-      <h3 class="task" id="name" >Task: {{ task.name }}</h3>
-      <h3 class="task" id="status" >Status: {{ task.status }}</h3>
+      <h3 class="task" id="name" ><span style="color: darkblue;">Task:</span> {{ task.name }}</h3>
+      <h3 class="task" id="status" ><span style="color: darkblue;">Status:</span>  {{ task.status }}</h3>
       <div class="buttonsEditDel">
         <w-button
           v-if="isAuthenticated"
