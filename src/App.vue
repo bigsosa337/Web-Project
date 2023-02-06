@@ -6,19 +6,48 @@
         <router-link v-if="!isAuthenticated" to="/logIn" class="navBar">Log In</router-link>
         <router-link to="/" class="navBar">Home</router-link>
         <router-link v-if="isAuthenticated" to="/addTask" class="navBar">Add Task</router-link>
-        <button v-if="isAuthenticated" @click="logout()" class="logoutBtn">Log Out</button>
+        <w-button v-if="isAuthenticated"
+         @click="logout()"
+         class="ma1"
+         bg-color="error"
+         >
+         <svg-icon
+          class="mr1"
+          color="primary"
+          type="mdi"
+          :path="path"
+          size="18"
+          ></svg-icon>
+         Log Out</w-button>
       </div>
     </nav>
-    <router-view />
+    <router-view
+      class="router-view"
+      v-slot="{ Component }"
+    >
+    <Transition name="page-opacity" mode="out-in" >
+      <component  :is="Component" />
+    </Transition>
+    </router-view>
   </w-app>
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiLogoutVariant } from '@mdi/js';
 export default {
+  components: {
+    SvgIcon
+  },
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated;
     },
+  },
+  data() {
+    return {
+      path: mdiLogoutVariant
+    }
   },
   methods: {
     logout() {
@@ -32,6 +61,17 @@ export default {
 </script>
 
 <style>
+
+.page-opacity-enter-active,
+.page-opacity-leave-active {
+  transition:300ms ease all;
+}
+
+.page-opacity-enter-from,
+.page-opacity-leave-to {
+  opacity: 0;
+}
+
 #app {
   font-family: 'Product Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
