@@ -1,5 +1,5 @@
 <template>
- <div class="bigDiv">
+ <div class="bigDiv" id="mainDiv">
   <h1>Log In</h1>
   <w-form @submit.prevent="login()" class="logForm" id="logiForm">
       <div>
@@ -78,7 +78,10 @@ export default {
             this.$store.dispatch("login", true)
           }
           //After log in redirect user to home page
-          this.$router.push("/")
+          this.$router.push({
+            path: "/",
+            reload: true
+          })
         })
       })
     }
@@ -88,10 +91,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bigDiv{
+#mainDiv {
+  background-color: rgba(248, 248, 248, 0.925);
+  padding:25px;
+  border-radius: 5px;
   margin-top: 30px;
 }
-
+/* .bigDiv{
+  margin-top: 30px;
+} */
+h1 {
+  margin-bottom: 10px;
+}
 .mb4 {
   width:300px;
   /* height:40px; */
@@ -102,5 +113,20 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
+#submitBtn {
+  height: 25px;
+  width:100px;
+  background-color: rgb(5, 146, 99);
+  color: aliceblue;
+  border: none;
+  border-radius: 3px;
+}
 
+#submitBtn:hover {
+  cursor:pointer;
+  background-color:  rgb(34, 199, 144);
+  border: 1px;
+  color: rgb(255, 255, 255);
+  transition-duration: 350ms;
+}
 </style>

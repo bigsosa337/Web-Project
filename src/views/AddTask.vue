@@ -12,9 +12,9 @@
     </div>
     <div class="statusTask">
         <select v-model="status">
-            <option value="notStartedYet">Not Started Yet</option>
-            <option value="done">Done</option>
-            <option value="inProgress">In Progress</option>
+            <option value="Not Started Yet">Not Started Yet</option>
+            <option value="Done">Done</option>
+            <option value="In Progress">In Progress</option>
         </select>
     </div>
     <button type="submit" class="submitBtn">Add Task</button>
@@ -27,7 +27,7 @@ import utils from "../utils"
 export default {
     data() {
         return {
-            status: "notStartedYet",
+            status: "Not Started Yet",
             name: "",
         };
     },
@@ -51,6 +51,7 @@ export default {
                     console.log(utils.url)
                     console.log(utils.url + "tasks", requestParameters)
                     console.log(res.message)
+                    
                     if(
                         res.message === "Decoding error!" ||
                         res.message === "Token expired!"
@@ -59,7 +60,10 @@ export default {
                     } else {
                         data.id = res.id;
                         this.$store.dispatch("addTask", data);
-                        this.$router.push("/")
+                        this.$router.push({
+                                reload: true,
+                                path: "/"
+                       })
                     }
                 })
         }

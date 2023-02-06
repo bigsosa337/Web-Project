@@ -121,6 +121,8 @@ h1 {
   background-color:  rgb(34, 199, 144);
   border: 1px;
   color: rgb(255, 255, 255);
+  transition-duration: 350ms;
+
 }
 
 </style>

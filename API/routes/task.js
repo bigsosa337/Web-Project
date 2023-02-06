@@ -61,11 +61,9 @@ router.get("/tasks", async (req, res) => {
     task.name = req.body.name;
     task.status = req.body.status;
     const result = await db.collection("tasks").add(task);
-    debugger
-    console.log(task.id)
     console.log(result.id)
     setTimeout(function() {
-      res.json({ id: result.id });
+      res.json({ message: result.id });
     }, 1500)
     
   });

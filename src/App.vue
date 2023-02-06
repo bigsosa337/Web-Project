@@ -40,6 +40,7 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
   padding-top: 50px;
+  /* background-color:  rgba(248, 248, 248, 0.925); */
    background-image: url(https://cdn.dribbble.com/users/189564/screenshots/17328144/media/c7e1c291b755b8440789d7b7d828526d.png);
 
 }

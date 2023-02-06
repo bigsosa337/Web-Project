@@ -1,8 +1,8 @@
 <template>
  <div class="containerTodo">
     <div v-if="isAuthenticated" class="body">
-      <h5 class="task">Task: {{ task.name }}</h5>
-      <h5 class="task">Status: {{ task.status }}</h5>
+      <h3 class="task" id="name" >Task: {{ task.name }}</h3>
+      <h3 class="task" id="status" >Status: {{ task.status }}</h3>
       <div class="buttonsEditDel">
         <w-button
           v-if="isAuthenticated"
@@ -12,6 +12,8 @@
             }
           "
           class="ma1"
+          id="seeNotes"
+          bg-color="info"
         >
           See Notes
         </w-button>
@@ -19,53 +21,62 @@
           v-if="isAuthenticated"
           @click="() => (handleNoteSearch = !handleNoteSearch)"
           class="ma1"
+          id="addNote"
+          bg-color="info"
         >
           Add note
         </w-button>
 
-        <button
+        <w-button
           v-if="isAuthenticated"
           @click="edit"
-          class="editBtn"
+          class="ma1"
+          id="edit"
+          bg-color="warning"
         >
-          Edit
-        </button>
+          Edit Task
+        </w-button>
 
-        <button
+        <w-button
           v-if="isAuthenticated"
           @click="remove"
-          class="delBtn"
+          class="ma1"
+          id="remove"
+          bg-color="error"
         >
-          Remove
-        </button>
+          Remove Task
+        </w-button>
       </div>
       <div v-if="handleNoteSearch" class="noteContainer">
         <w-input 
           v-model="noteName"
           type="text"
-          class="mb4"        
+          class="mb4"     
+          id="addnoteInput"   
         />
         <w-button
           v-if="isAuthenticated"
           @click="addNote"
           class="ma1"
-        >Done</w-button>
+        >Add</w-button>
       </div>
       <div class="noteBtns">
         <div v-if="handleNoteShow && this.notes.length > 0" class="innternotebtn" >
           <div class="s"
           v-for="note in this.notes" :key="note.id">
-            <div class="noteName">Notes: {{ note.name }} </div>
+            <div class="noteName">{{ note.name }} </div>
             <w-button
                 v-if="isAuthenticated"
                 @click="deleteNote(note)"
                 class="ma1"
+                bg-color="error"
+                icon="wi-cross"
               >
                 Delete Note
               </w-button>
           </div>
         </div>
-        <div v-else-if="handleNoteShow" >No notes added</div>
+        <div v-else-if="handleNoteShow" class="noNoteWarn">No notes added</div>
       </div>
     </div>
  </div>
@@ -152,18 +163,42 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.containterToDo  {
+  padding-top: 25px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+#name {
+  border-top: 1.5px solid rgba(39, 38, 38, 0.295);
+  padding-top: 10px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+#status {
+  padding-bottom: 5px;
 }
-a {
-  color: #42b983;
+.noNoteWarn {
+  padding-top: 10px;
+  font-weight: bolder;
+  color: rgba(51, 51, 51, 0.568);
+}
+.noteContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.noteName {
+  padding: 5px;
+  padding-top: 10px;
+  font-weight: bolder;
+  font-size: 14px;
+}
+.noteBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ma1 {
+}
+#addnoteInput {
+  width: 50%;
+  
 }
 </style>

@@ -12,9 +12,9 @@
     </div>
     <div class="statusTask">
         <select v-model="status">
-            <option value="notStartedYet">Not Started Yet</option>
-            <option value="done">Done</option>
-            <option value="inProgress">In Progress</option>
+            <option value="Not Started Yet">Not Started Yet</option>
+            <option value="Done">Done</option>
+            <option value="In Progress">In Progress</option>
         </select>
     </div>
     <button type="submit" class="submitBtn">Add Task</button>

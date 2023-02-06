@@ -1,7 +1,7 @@
 <template>
  <div class="mainDiv">
-    <div v-if="isAuthenticated">
-      <span>Tasks</span>
+    <div v-if="isAuthenticated" class="header">
+      <h1>Tasks</h1>
       <div v-if="isAuthenticated" class="sortingBtns">
         <w-button
         class="ma1"
@@ -9,23 +9,28 @@
         @click.prevent="() => {
           tasks.sort(sortByName)
         }"
-        >Ascendent</w-button>
+        >Asc</w-button>
         <w-button
         class="ma1"
         bg-color="success"
         @click.prevent="() => {
           tasks.sort(sortByName).reverse()
         }"
-        >Descendent</w-button>
+        >Desc</w-button>
       </div>
-      <TaskComponent
+      <TaskComponent class="task"
         @remove="deleteTask"
         :task="elem" 
         v-for="elem in tasks"
         :key="elem.id"
       />
     </div>
-    <div v-else>You need to log in</div>
+    <div v-else class="logInWarn">
+      You need to log in!
+      <div>
+
+      </div>
+    </div>
    </div>
 </template>
 
@@ -78,18 +83,43 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+h1{
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-top: 15px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.logInWarn {
+  font-weight: bold;
+  font-size: 36px;
+  margin-top: 70px;
+  animation: color_change 1.5s infinite alternate;
+  background-color:  rgba(248, 248, 248, 0.925);
+  padding: 25px;
+  border-radius: 5px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+@keyframes color_change {
+ from { color: rgb(40, 40, 43); }
+ to { color: green; }
 }
-a {
-  color: #42b983;
+
+.sortingBtns {
+  /* background-color: rgba(248, 248, 248, 0.925); */
+  /* padding: 25px; */
 }
+
+.header {
+  background-color: rgba(248, 248, 248, 0.925);
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+}
+.task {
+  padding-top: 10px;
+}
+
+.s {
+  border: 1px solid black;
+}
+
 </style>
