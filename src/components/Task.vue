@@ -217,8 +217,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .containterToDo  {
   padding-top: 25px;
+  
 }
 #name {
   border-top: 1.5px solid rgba(39, 38, 38, 0.295);
@@ -237,6 +243,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 90%;
+  padding-left: 10%;
 }
 .noteName {
   padding: 5px;
@@ -248,11 +256,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background-color: rgba(146, 146, 146, 0.116); */
 }
 
 #addnoteInput {
-  width: 50%;
+  /* width: 60%; */
   padding-top: 5px;
+  /* padding-left: 30%; */
+  
   
 }
 </style>
