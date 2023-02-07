@@ -76,12 +76,13 @@ export default {
           if (res.token) {
             localStorage.setItem("token", res.token);
             this.$store.dispatch("login", true)
-          }
-          //After log in redirect user to home page
-          this.$router.push({
+            this.$router.push({
             path: "/",
             reload: true
           })
+          }
+          //After log in redirect user to home page
+          
         })
       })
     }
@@ -128,5 +129,9 @@ h1 {
   border: 1px;
   color: rgb(255, 255, 255);
   transition-duration: 350ms;
+}
+.mesaj {
+  padding-top: 15px;
+  color: orangered;
 }
 </style>

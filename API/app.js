@@ -1,5 +1,4 @@
 const cors = require('cors');
-// const cors = require('cors');
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -8,7 +7,8 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 const serverSecret = 'bahoi'
 var db = require("./database")
-
+var Chance = require('chance')
+var chance = new Chance()
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json()) //we expect JSON data to be sent as payloads
@@ -17,34 +17,66 @@ app.use(cors())
 const logger = require('morgan'); //importing a HTTP logger
 app.use(logger('dev')); //using the HTTP logger library
 
-//importam componenta de task
+//import task component
 var tasksRouter = require("./routes/task");
 app.use("/", tasksRouter);
 
+//import note component
 var noteRouter = require("./routes/note");
 app.use("/", noteRouter);
 
-function beforeEnteringRoute(req, res, next) {
-  console.log("I've been here first");
-  next();
-}
+//Generate fake data
+app.post("/generateRandData/:noOfRecords", async (req, res) => {
+  let no = req.params.noOfRecords;
 
-function firstCriteria(req, res, next) {
-  if (req.params.variable < 5) {
-    console.log("Too small");
-    res.status(401).send("Too small");
-  } else next();
-}
+  for (let i = 0; i < no; i++) {
+    let rdm = Math.floor(Math.random() * 2);
+    let data;
+    console.log(rdm)
+    switch(rdm) {
+      case 0:
+        data = "Not Started Yet";
+        break;
+      case 1:
+        data = "In Progress";
+        break;
+      case 2:
+        data = "Done";
+        break;      
+    }
+    let obj = {
+      name: chance.sentence({ words: 5 }),
+      status: data,
+    }
+    console.log(obj);
+    const res = await db.collection("tasks").add(obj);
+  }
+  res.send("Inserting " + no + " entries")
+})
 
-function secondCriteria(req, res, next) {
-  if (req.params.variable > 20) {
-    console.log("Too large");
-    res.status(401).send("Too large");
-  } else next();
-}
+//-----------------------UNUSED CRITERIA -- returns errors
+// function beforeEnteringRoute(req, res, next) {
+//   console.log("I've been here first");
+//   next();
+// }
 
-let middlewareArray = [firstCriteria, secondCriteria];
-// middleware
+// function firstCriteria(req, res, next) {
+//   if (req.params.variable < 5) {
+//     console.log("Too small");
+//     res.status(401).send("Too small");
+//   } else next();
+// }
+
+// function secondCriteria(req, res, next) {
+//   if (req.params.variable > 20) {
+//     console.log("Too large");
+//     res.status(401).send("Too large");
+//   } else next();
+// }
+
+// let middlewareArray = [firstCriteria, secondCriteria];
+
+// middleware -- verifica tokenul
 function verifyToken(req, res, next) {
   let token = req.headers['authorization'] 
   if (token) {
@@ -114,6 +146,7 @@ app.post('/user', async (req, res) => {
   }
 });
 
+//LOG IN
 app.post("/login", async (req, res) => {
   // console.log('vrei sa te autentifici cu ', ${dataemailAddress})
   let data = req.body

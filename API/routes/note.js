@@ -30,7 +30,7 @@ function checkAuthorization(req, res, next) {
         res.json({message: "Token is missing!"});
     }
 }
-
+//Get notes
 router.get("/tasks/note/:id", async (req, res) => {
     console.log("getting the notes");
     const response = await db
@@ -52,7 +52,7 @@ router.get("/tasks/note/:id", async (req, res) => {
 });
 
 
-//adding a note to the task
+//Adding notes to task
 router.post("/tasks/note/:id", async (req, res) => {
     console.log("Adding a note to task: " + req.params.id);
     let obj = {};

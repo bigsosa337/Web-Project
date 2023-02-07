@@ -128,4 +128,9 @@ h1 {
 
 }
 
+.mesaj {
+  padding-top: 15px;
+  color: orangered;
+}
+
 </style>
