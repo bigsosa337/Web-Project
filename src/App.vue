@@ -120,4 +120,10 @@ export default {
 a:active {
   border-bottom: blue;
 }
+
+@media only screen and (max-width: 900px) {
+  #navBarr {
+    padding: 0;
+  }
+}
 </style>
