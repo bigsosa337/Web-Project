@@ -1,4 +1,4 @@
-let url = 'http://ec2-18-211-47-55.compute-1.amazonaws.com:8080/'
+let url = 'http://10.0.6.33:8080/'
 let globalRequestParameters = {
   method: 'GET',
   mode: 'cors', 
