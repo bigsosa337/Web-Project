@@ -1,4 +1,4 @@
-let url = 'http://18.211.47.55:80/'
+let url = 'http://localhost:3000/'
 let globalRequestParameters = {
   method: 'GET',
   mode: 'cors', 
